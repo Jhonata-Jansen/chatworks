@@ -106,3 +106,10 @@ class FacebookMessenger():
             self._simple_request_maker(req)
             return True
         return False
+
+    def get_request_type(self, request):
+        if "sender_action" in request.keys():
+            return (request["sender_action"], request)
+        elif "message" in request.keys():
+            return ("message", request)
+        return ("undefined", request)
